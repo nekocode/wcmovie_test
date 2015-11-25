@@ -3,32 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>你和哪类电影的主角是天作之合？</title>
-  <link rel="stylesheet" href="{{ static_url('assets/normalize.css') }}">
-  <link rel="stylesheet" href="{{ static_url('dist/style.css') }}">
+  <title>{{ app.question }}</title>
+  <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/assets/normalize.css">
+  <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/style.css">
 </head>
 <body>
   <div class="page-wrapper">
     <div class="padding">
-      <h1>Vanitas和泰坦尼克号的主角是天作之合！！</h1>
+      <h1>{{ input_str + ' ' + answer.title }}</h1>
     </div>
 
-    <img src="{{ static_url('assets/result.jpg') }}" alt="result" class="figure">
+    <img src="{{ answer.logo_url }}" alt="result" class="figure">
 
     <div class="padding">
       <button class="btn primary" id="share-to-moment">分享到朋友圈</button>
 
       <p class="result-prompt">
-        嗯..真是不知道要加什么额<br>
-        先加入少许的宅<br>
-        啊啊啊嗷嗷嗷手滑！
+        {{ answer.content }}
       </p>
 
-      <a href="index.html" class="btn default">重新测验</a>
+      <a href="{{ retest_url }}" class="btn default">重新测验</a>
       <a href="#" class="btn default">获取最新电影资讯，请关注我们</a>
 
       <div class="qrcode">
-        <img src="{{ static_url('assets/qrcode.png') }}" alt="二维码">
+        <img src="{{ app.qrcode_url }}" alt="二维码">
         <p class="prompt">
           <span>长按识别二维码</span>
           <span>请使用微信扫描二维码</span>
@@ -40,15 +38,15 @@
   <div class="share-mask">
     <div class="modal not-wechat">
       <span class="close">✕</span>
-      <img src="{{ static_url('assets/qrcode.png') }}" alt="二维码">
+      <img src="{{ app.qrcode_url }}" alt="二维码">
       <p>请使用微信扫描二维码</p>
     </div>
 
     <div class="wechat">
-      <img src="{{ static_url('assets/arrow.png') }}" alt="箭头">
+      <img src="http://7xon5f.com2.z0.glb.qiniucdn.com/static/assets/arrow.png" alt="箭头">
     </div>
   </div>
 
-  <script src="{{ static_url('dist/main.js') }}"></script>
+  <script src="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/main.js"></script>
 </body>
 </html>

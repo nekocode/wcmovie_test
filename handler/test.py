@@ -74,6 +74,6 @@ class ResultHandler(BaseHandler):
 
         answer = db.get("SELECT * FROM answer WHERE app_id=%d LIMIT %d,1;" % (app_id, answer_row))
 
-        self.render('result.html')
+        self.render('result.html', input_str=input_str, app=app, answer=answer, retest_url="/test/%d" % app_id)
 
 
