@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 1em 0;
+  padding: 0;
+  color: #666666;
+  line-height: 1.2;
+}
+
+body {
+  line-height: 1.2;
+  word-wrap: break-word;
+}
+
+.page-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+
+  & > .padding {
+    padding: 0 1rem;
+  }
+}
+
+.figure {
+  width: 100%;
+}
+
+h1 {
+  margin: 0.5rem 0;
+  padding: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.abstract {
+  color: #666666;
+}
+
+input {
+  width: 100%;
+  padding: 0.5em 0.8em;
+  font-size: 1rem;
+  border: 2px solid #FD6749;
+  box-shadow: none;
+}
+
+.prompt {
+  font-size: 0.8rem;
+  color: #666666;
+  text-align: center;
+}
+
+.statistics {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.statistics .count {
+  color: #FD6749;
+}
+
+.btn {
+  display: block;
+  margin: 1rem 0;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.3;
+  padding: 0.5em 1em;
+  // 若不设置字体，按钮可能不会垂直居中
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  user-select:none;
+  cursor: pointer;
+  transition: background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease;
+
+  &.default {
+    color: rgba(0, 0, 0, 0.6);
+    background-color: #E0E1E2;
+    box-shadow: 0px 0px 0px 1px transparent inset, 0px 0px 0px 0px rgba(34, 36, 38, 0.15) inset;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.8);
+      background-color: #CACBCD;
+      box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34, 36, 38, 0.15) inset;
+    }
+
+    &:focus {
+      color: rgba(0, 0, 0, 0.8);
+      background-color: #CACBCD;
+      box-shadow: none;
+    }
+
+    &:active {
+      color: rgba(0, 0, 0, 0.9);
+      background-color: #BABBBC;
+      box-shadow: 0 0 0 1px transparent inset, none;
+    }
+  }
+
+  &.primary {
+    color: #FFFFFF;
+    background-color: #FD6749;
+    box-shadow: 0 0 0 0 rgba(34, 36, 38, 0.15) inset;
+
+    &:hover {
+      background-color: #F26202;
+    }
+
+    &:focus {
+      background-color: #E55B00;
+    }
+
+    &:active {
+      background-color: #CF590C;
+    }
+
+    &[disabled] {
+      background-color: rgba(253, 103, 73, 0.8);
+    }
+  }
+}
+
+.qrcode {
+  text-align: center;
+
+  img {
+    width: 80%;
+    max-width: 200px;
+  }
+
+  .prompt {
+    margin-top: 0;
+
+    span:last-child {
+      display: none;
+    }
+
+    &.not-in-wechat {
+      span {
+        display: none;
+
+        &:last-child {
+          display: inline;
+        }
+      }
+    }
+  }
+}
+
+.result-prompt {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+// 分享
+.share-mask {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  &.active {
+    display: block;
+  }
+
+  .not-wechat {
+    display: none;
+  }
+
+  &.not-in-wechat.active {
+    // 使用flex实现居中
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .wechat {
+      display: none;
+    }
+
+    .not-wechat {
+      display: block;
+    }
+  }
+
+  // 在微信中的分享样式
+  .wechat {
+    padding-right: 2.1rem;
+    padding-top: 0.6rem;
+    text-align: right;
+
+    img {
+      width: 74px;
+    }
+  }
+
+  .modal {
+    position: relative;
+    width: 80%;
+    max-width: 250px;
+    padding: 1rem;
+    text-align: center;
+    background-color: #FFFFFF;
+
+    .close {
+      position: absolute;
+      right: 0.6rem;
+      top: 0.3rem;
+      color: #666666;
+      cursor: pointer;
+    }
+
+    img {
+      width: 100%;
+      clear: both;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+  }
+}

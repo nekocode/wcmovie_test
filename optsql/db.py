@@ -11,7 +11,7 @@ def create_tables():
         db.execute("CREATE TABLE app(id INTEGER PRIMARY KEY AUTO_INCREMENT, "
                    "name VARCHAR(20) NOT NULL, qrcode_url VARCHAR(512) NOT NULL, "
                    "bg_url VARCHAR(512) NOT NULL, question VARCHAR(64) NOT NULL, intro VARCHAR(128) NOT NULL, "
-                   "label VARCHAR(10) NOT NULL, answer_prefix VARCHAR(64) NOT NULL, "
+                   "input_label VARCHAR(10) NOT NULL, answer_prefix VARCHAR(64) NOT NULL, "
                    "active BOOLEAN NOT NULL)")
 
     if if_table_exist( 'answer') == 0:
