@@ -15,15 +15,16 @@ class BaseHandler(RequestHandler):
 
     def get_app(self, app_id):
         try:
+            app_id = int(app_id)
             app = db.get("SELECT * FROM app WHERE id=%d" % app_id)
 
             if app is None:
                 raise Exception("does not have this id")
-            return app
+            return app_id, app
 
         except Exception, e:
             self.write(u"Err：APP not found, " + e.message if e.message is not '' else str(e.args))
-            return None
+            return None, None
 
 
 class TestHandler(BaseHandler):
@@ -31,16 +32,14 @@ class TestHandler(BaseHandler):
         pass
 
     def get(self, app_id):
-        app_id = int(app_id)
-        app = self.get_app(app_id)
+        app_id, app = self.get_app(app_id)
         if app is None:
             return
 
         self.render('index.html', app=app)
 
     def post(self, app_id):
-        app_id = int(app_id)
-        app = self.get_app(app_id)
+        app_id, app = self.get_app(app_id)
         if app is None:
             return
 
@@ -58,8 +57,7 @@ class ResultHandler(BaseHandler):
             self.write("Input is none")
             return
 
-        app_id = int(app_id)
-        app = self.get_app(app_id)
+        app_id, app = self.get_app(app_id)
         if app is None:
             return
 
