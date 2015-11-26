@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ app.question }}</title>
+  <title>{{ '"' + input_str + '"' + answer.title }}</title>
   <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/assets/normalize.css">
   <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/style.css">
 </head>
 <body>
   <div class="page-wrapper">
     <div class="padding">
-      <h1>{{ input_str + ' ' + answer.title }}</h1>
+      <h1>{{ '「' + input_str + '」' + answer.title }}</h1>
     </div>
 
     <img src="{{ answer.logo_url }}" alt="result" class="figure">
