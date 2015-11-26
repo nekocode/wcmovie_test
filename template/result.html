@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ '"' + input_str + '"' + answer.title }}</title>
+  <title>{{ '哇，快进来看！' + input_str + '' + answer.title }}</title>
   <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/assets/normalize.css">
   <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/style.css">
 </head>
@@ -19,7 +19,7 @@
       <button class="btn primary" id="share-to-moment">分享到朋友圈</button>
 
       <p class="result-prompt">
-        {{ answer.content }}
+        {% raw answer.content %}
       </p>
 
       <a href="{{ retest_url }}" class="btn default">重新测验</a>
