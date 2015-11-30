@@ -11,13 +11,17 @@ def create_tables():
         db.execute("CREATE TABLE app(id INTEGER PRIMARY KEY AUTO_INCREMENT, "
                    "name VARCHAR(20) NOT NULL, qrcode_url VARCHAR(512) NOT NULL, "
                    "bg_url VARCHAR(512) NOT NULL, question VARCHAR(64) NOT NULL, intro VARCHAR(128) NOT NULL, "
-                   "input_label VARCHAR(10) NOT NULL, answer_prefix VARCHAR(64) NOT NULL, "
+                   "input_label VARCHAR(10) NOT NULL, answer_prefix VARCHAR(64) NOT NULL, uid INTEGER NOT NULL, "
                    "active BOOLEAN NOT NULL)")
 
-    if if_table_exist( 'answer') == 0:
+    if if_table_exist('answer') == 0:
         db.execute("CREATE TABLE answer(id INTEGER PRIMARY KEY AUTO_INCREMENT, "
                    "app_id INTEGER NOT NULL, logo_url VARCHAR(512) NOT NULL, "
                    "title VARCHAR(64) NOT NULL, subtitle VARCHAR(128) NOT NULL, content VARCHAR(256) NOT NULL)")
+
+    if if_table_exist('user') == 0:
+        db.execute("CREATE TABLE user(id INTEGER PRIMARY KEY AUTO_INCREMENT, "
+                   "username VARCHAR(20) NOT NULL, password VARCHAR(20) NOT NULL)")
 
 
 def if_table_exist(table_name):

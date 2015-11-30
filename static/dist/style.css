@@ -112,7 +112,9 @@ input {
         display: inline; }
 
 .result-prompt {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: bolder;
   line-height: 1.5; }
 
 .share-mask {
