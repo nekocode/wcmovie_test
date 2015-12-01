@@ -14,4 +14,4 @@ class BaseHandler(RequestHandler):
         return self.get_secure_cookie('user')
 
 
-pagination = Pagination(db, 10)
+pagination = Pagination(db)

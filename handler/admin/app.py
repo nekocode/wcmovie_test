@@ -16,7 +16,7 @@ class AppQueryHandler(BaseHandler):
         uid = int(escape.xhtml_escape(self.current_user))
 
         p = int(self.get_argument('p', 1))
-        p, rows, pages = pagination.get_page_rows(p, 'app', 'WHERE uid=%d' % uid)
+        rows = pagination.get_page_rows(p, 'app', 'WHERE uid=%d' % uid)
 
 
 class AppEditHandler(BaseHandler):

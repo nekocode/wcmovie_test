@@ -22,7 +22,7 @@ class AnswerQueryHandler(BaseHandler):
             return
 
         p = int(self.get_argument('p', 1))
-        p, rows, pages = pagination.get_page_rows(p, 'answer', 'WHERE app_id=%d' % app_id)
+        rows = pagination.get_page_rows(p, 'answer', 'WHERE app_id=%d' % app_id)
 
 
 class AnswerEditHandler(BaseHandler):
@@ -60,5 +60,16 @@ class AnswerEditHandler(BaseHandler):
             pass
         elif action == 'edit':
             pass
+
+
+class AnswerCountPageHandler(BaseHandler):
+    def data_received(self, chunk):
+        pass
+
+    @authenticated
+    def get(self):
+        pass
+
+
 
 
