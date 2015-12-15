@@ -12,8 +12,8 @@ sys.setdefaultencoding('utf-8')
 
 
 url = [
-    (r'/test/admin/login', LoginHandler),
-    (r'/test/admin/logout', LogoutHandler),
+    # (r'/test/admin/login', LoginHandler),
+    # (r'/test/admin/logout', LogoutHandler),
 
     (r'/test/admin/app', AppQueryHandler),
     (r'/test/admin/app/(.*)', AppEditHandler),

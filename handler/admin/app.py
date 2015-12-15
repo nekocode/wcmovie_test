@@ -11,41 +11,36 @@ class AppQueryHandler(BaseHandler):
     def data_received(self, chunk):
         pass
 
-    @authenticated
     def get(self):
-        uid = int(escape.xhtml_escape(self.current_user))
-
         p = int(self.get_argument('p', 1))
-        rows = pagination.get_page_rows(p, 'app', 'WHERE uid=%d' % uid)
+        rows = pagination.get_page_rows(p, 'app')
+
+        self.render('admin/apps.html', rows=rows)
 
 
 class AppEditHandler(BaseHandler):
     def data_received(self, chunk):
         pass
 
-    @authenticated
     def get(self, action):
-        uid = int(escape.xhtml_escape(self.current_user))
         app_id = int(self.get_argument('app_id', 1))
         app = db.get('SELECT * FROM app WHERE id=%d' % app_id)
 
-        if app is None or app.uid != uid:
-            self.write(u'你没有权限访问该 APP')
+        if app is None:
+            self.write(u'找不到该 APP')
             return
 
         if action == 'add':
-            pass
+            self.render('admin/app_edit.html')
         elif action == 'edit':
-            pass
+            self.render('admin/app_edit.html')
 
-    @authenticated
     def post(self, action):
-        uid = int(escape.xhtml_escape(self.current_user))
         app_id = int(self.get_argument('app_id', 1))
         app = db.get('SELECT * FROM app WHERE id=%d' % app_id)
 
-        if app is None or app.uid != uid:
-            self.write(u'你没有权限访问该 APP')
+        if app is None:
+            self.write(u'找不到该 APP')
             return
 
         if action == 'add':

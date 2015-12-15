@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>应用列表</title>
+  <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/lib.css">
+  <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/all.css">
+  <script src="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/lib.js"></script>
+  <script src="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/all.js"></script>
+</head>
+<body>
+  <div class="page-header">
+    <div class="user-info">
+      <a href="/" class="username">Vanitas</a>
+      <!--<a href="/logout" class="logout">退出</a>-->
+    </div>
+    <h1><a href="/">营销管理平台</a></h1>
+  </div>
+
+  <ul class="page-sidebar">
+    <li>
+      <a href="app"><i class="fa fa-tachometer"></i> 应用</a>
+      <ul>
+        <li><a href="app/add"><i class="fa fa-plus"></i> 添加</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="answer"><i class="fa fa-archive"></i> 答案</a>
+    </li>
+  </ul>
+
+  <div class="page-main">
+    <h2>应用列表</h2>
+    <table class="table table-striped apps">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>名称</th>
+          <th>二维码</th>
+          <th>背景图片</th>
+          <th>问题</th>
+          <th>简介</th>
+          <th>输入框提示</th>
+          <!--<th>答案前缀</th>
+          <th>是否开放</th>-->
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        {% for row in rows %}
+        <tr data-id="1">
+          <td class="text-center">1</td>
+          <td>{{ row.name }}</td>
+          <td><img src="{{ row.qrcode_url }}" alt="二维码"></td>
+          <td><img src="{{ row.bg_url }}" alt="背景"></td>
+          <td>{{ row.intro }}</td>
+          <td>{{ row.question }}</td>
+          <td>{{ row.input_label }}</td>
+          <!--<td></td>
+          <td class="text-center">是</td>-->
+          <td class="operations">
+            <!--<a href="javascript:void(0)" class="activate">开放</a>-->
+            <!--<a href="javascript:void(0)" class="deactivate">关闭</a>-->
+            <a href="app/edit?app_id={{ row.id }}">编辑</a>
+            <a href="javascript:void(0)" class="delete">删除</a>
+          </td>
+        </tr>
+        {% end %}
+        
+      </tbody>
+    </table>
+
+    <nav class="text-center">
+      <ul class="pagination">
+        <li>
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">上一页</span>
+          </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li class="disabled"><a href="#">...</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li class="active"><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+        <li><a href="#">7</a></li>
+        <li class="disabled"><a href="#">...</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">下一页</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</body>
+</html>
