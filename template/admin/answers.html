@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>应用列表</title>
+  <title>答案列表</title>
   <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/lib.css">
   <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/all.css">
   <script src="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/lib.js"></script>
@@ -32,18 +32,23 @@
 
   <div class="page-main">
     <h2>应用列表</h2>
-    <table class="table table-striped apps">
+    <div>
+      <select id="_apps" onchange="window.location=this.value;">
+        {% for app in apps %}
+        <option value="answer?app_id={{ app.id }}" {% if app.id==app_id %}selected = "selected"{% end %}>{{ app.name }}</option>
+        {% end %}
+        
+      </select>
+      <a href="answer/add?app_id={{ app_id }}" class="btn btn-info btn-sm">添加答案</a>
+    </div>
+    <table class="table table-striped anwsers">
       <thead>
         <tr>
           <th>ID</th>
-          <th>名称</th>
-          <th>二维码</th>
-          <th>背景图片</th>
-          <th>问题</th>
-          <th>简介</th>
-          <th>输入框提示</th>
-          <!--<th>答案前缀</th>
-          <th>是否开放</th>-->
+          <th>LOGO</th>
+          <th>标题</th>
+          <!--<th>子标题</th>-->
+          <th>内容</th>
           <th>操作</th>
         </tr>
       </thead>
@@ -52,23 +57,16 @@
         {% for row in rows %}
         <tr data-id="{{ row.id }}">
           <td class="text-center">{{ row.id }}</td>
-          <td>{{ row.name }}</td>
-          <td><img src="{{ row.qrcode_url }}" alt="二维码"></td>
-          <td><img src="{{ row.bg_url }}" alt="背景"></td>
-          <td>{{ row.intro }}</td>
-          <td>{{ row.question }}</td>
-          <td>{{ row.input_label }}</td>
-          <!--<td></td>
-          <td class="text-center">是</td>-->
+          <td><img src="{{ row.logo_url }}" alt="LOGO"></td>
+          <td>{{ row.title }}</td>
+          <td>{{ row.content }}</td>
           <td class="operations">
-            <!--<a href="javascript:void(0)" class="activate">开放</a>-->
-            <!--<a href="javascript:void(0)" class="deactivate">关闭</a>-->
-            <a href="app/edit?app_id={{ row.id }}">编辑</a>
-            <a href="app/delete?app_id={{ row.id }}">删除</a>
+            <a href="answer/edit?id={{ row.id }}">编辑</a>
+            <a href="answer/delete?id={{ row.id }}">删除</a>
           </td>
         </tr>
         {% end %}
-        
+
       </tbody>
     </table>
 

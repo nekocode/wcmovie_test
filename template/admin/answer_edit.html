@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>添加答案</title>
+  <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/lib.css">
+  <link rel="stylesheet" href="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/all.css">
+  <script src="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/lib.js"></script>
+  <script src="http://7xon5f.com2.z0.glb.qiniucdn.com/static/dist/all.js"></script>
+</head>
+<body>
+  <div class="page-header">
+    <div class="user-info">
+      <!--<a href="/" class="username">Vanitas</a>-->
+      <!--<a href="/logout" class="logout">退出</a>-->
+    </div>
+    <h1><a href="/">营销管理平台</a></h1>
+  </div>
+
+  <ul class="page-sidebar">
+    <li>
+      <a href="/test/admin/app"><i class="fa fa-tachometer"></i> 应用</a>
+      <ul>
+        <li><a href="/test/admin/app/add"><i class="fa fa-plus"></i> 添加</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/test/admin/answer"><i class="fa fa-archive"></i> 答案</a>
+    </li>
+  </ul>
+
+  <div class="page-main">
+    <h2>添加答案</h2>
+
+    <form action="">
+      <div class="form-group row">
+        <label class="form-control-label col-md-3 col-lg-2 col-xl-1" for="name">应用</label>
+        <div class="col-md-8 col-lg-6">
+          <p class="form-control-static">应用名称</p>
+        </div>
+      </div>
+      <div class="form-group row required">
+        <label class="form-control-label col-md-3 col-lg-2 col-xl-1" for="logo">图片</label>
+        <div class="col-md-8 col-lg-6">
+          <div class="image-container">
+              <!-- 若是添加新应用，给input加上required属性；更新时不加 -->
+              <input type="file" name="logo_url" id="logo" accept="image/*" {% if action == 'add' %} required {% end %}>
+              <span class="change">点击修改</span>
+              
+              {% if action == 'edit' %}
+              <!-- 若已有图片（更新时） -->
+               <img src="{{ answer.logo_url }}" alt="图片"> 
+              
+              {% else %}
+              <!-- 若无图片 -->
+              <span class="add">点击添加</span>
+              {% end %}
+          </div>
+        </div>
+      </div>
+      <div class="form-group row required">
+        <label class="form-control-label col-md-3 col-lg-2 col-xl-1" for="title">标题</label>
+        <div class="col-md-8 col-lg-6">
+          <input type="text" name="title" class="form-control" id="title" value="{{ answer.title if action=='edit' else '' }}" required>
+        </div>
+      </div>
+      <!--<div class="form-group row required">
+        <label class="form-control-label col-md-3 col-lg-2 col-xl-1" for="sub-title">子标题</label>
+        <div class="col-md-8 col-lg-6">
+          <textarea name="sub_title" class="form-control" id="sub-title" required></textarea>
+        </div>
+      </div>-->
+      <div class="form-group row required">
+        <label class="form-control-label col-md-3 col-lg-2 col-xl-1" for="content">内容</label>
+        <div class="col-md-8 col-lg-6">
+          <textarea name="content" class="form-control" id="content" required>{{ answer.content if action=='edit' else '' }}</textarea>
+        </div>
+      </div>
+
+      <div class="row actions">
+        <div class="col-md-offset-3 col-lg-2 col-xl-offset-1">
+          <div class="alert"></div>
+          <button type="submit" class="btn btn-primary">添加<i class="fa fa-spin fa-spinner"></i></button>
+          <!--<button type="reset" class="btn btn-warning">重置</button>-->
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
