@@ -26,6 +26,11 @@ class BaseHandler(RequestHandler):
             self.write(u"Err：APP not found, " + e.message if e.message is not '' else str(e.args))
             return None, None
 
+    @staticmethod
+    def update_pv(app_id, pv):
+        sql = "UPDATE app SET pv=%d WHERE id=%d" % (pv, app_id)
+        db.update(sql)
+
 
 class TestHandler(BaseHandler):
     def data_received(self, chunk):
@@ -36,6 +41,7 @@ class TestHandler(BaseHandler):
         if app is None:
             return
 
+        BaseHandler.update_pv(app_id, app.pv+1)
         self.render('index.html', app=app)
 
     def post(self, app_id):
@@ -72,6 +78,7 @@ class ResultHandler(BaseHandler):
 
         answer = db.get("SELECT * FROM answer WHERE app_id=%d LIMIT %d,1;" % (app_id, answer_row))
 
+        BaseHandler.update_pv(app_id, app.pv+1)
         self.render('result.html', input_str=input_str, app=app, answer=answer, retest_url="/test/%d" % app_id)
 
 

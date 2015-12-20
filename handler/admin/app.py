@@ -68,15 +68,15 @@ class AppEditHandler(BaseHandler):
                 return
 
             sql = "INSERT INTO app(name, qrcode_url, bg_url, question, intro, input_label, " \
-                  "answer_prefix, uid, active) " \
-                  "VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, %d)" \
+                  "answer_prefix, uid, follow_tip, pv, active) " \
+                  "VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, '%s', %d, %d)" \
                   % (MySQLdb.escape_string(self.get_body_argument('name')),
                      MySQLdb.escape_string(qrcode_url),
                      MySQLdb.escape_string(bg_url),
                      MySQLdb.escape_string(self.get_body_argument('question')),
                      MySQLdb.escape_string(self.get_body_argument('intro')),
                      MySQLdb.escape_string(self.get_body_argument('input_label')),
-                     '', 1, True)
+                     '', 1,  MySQLdb.escape_string(self.get_body_argument('follow_tip')), 0, True)
 
             db.insert(sql)
             self.write(json.dumps(dict(flag=True, url='/test/admin/app')))
@@ -104,13 +104,14 @@ class AppEditHandler(BaseHandler):
                 bg_url = app.bg_url
 
             sql = "UPDATE app SET name='%s', qrcode_url='%s', bg_url='%s', " \
-                  "question='%s', intro='%s', input_label='%s' WHERE id=%d" \
+                  "question='%s', intro='%s', input_label='%s', follow_tip='%s' WHERE id=%d" \
                   % (MySQLdb.escape_string(self.get_body_argument('name')),
                      MySQLdb.escape_string(qrcode_url),
                      MySQLdb.escape_string(bg_url),
                      MySQLdb.escape_string(self.get_body_argument('question')),
                      MySQLdb.escape_string(self.get_body_argument('intro')),
                      MySQLdb.escape_string(self.get_body_argument('input_label')),
+                     MySQLdb.escape_string(self.get_body_argument('follow_tip')),
                      app_id)
 
             db.update(sql)

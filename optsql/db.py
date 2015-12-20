@@ -12,6 +12,7 @@ def create_tables():
                    "name VARCHAR(20) NOT NULL, qrcode_url VARCHAR(512) NOT NULL, "
                    "bg_url VARCHAR(512) NOT NULL, question VARCHAR(64) NOT NULL, intro VARCHAR(128) NOT NULL, "
                    "input_label VARCHAR(10) NOT NULL, answer_prefix VARCHAR(64) NOT NULL, uid INTEGER NOT NULL, "
+                   "follow_tip VARCHAR(120) NOT NULL, pv INTEGER NOT NULL,"
                    "active BOOLEAN NOT NULL)")
 
     if if_table_exist('answer') == 0:

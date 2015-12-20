@@ -96,6 +96,12 @@
           <input type="text" name="input_label" class="form-control" id="input-prompt" value="{{ app.input_label if action=='edit' else '' }}" required>
         </div>
       </div>
+      <div class="form-group row required">
+        <label class="form-control-label col-md-3 col-lg-2 col-xl-1" for="input-prompt">关注提示</label>
+        <div class="col-md-8 col-lg-6">
+          <input type="text" name="follow_tip" class="form-control" id="input-prompt" value="{{ app.follow_tip if action=='edit' else '' }}" required>
+        </div>
+      </div>
       <!--<div class="form-group row">
         <label class="form-control-label col-md-3 col-lg-2 col-xl-1" for="anwser-prefix">答案前缀</label>
         <div class="col-md-8 col-lg-6">
