@@ -68,8 +68,8 @@ class AppEditHandler(BaseHandler):
                 return
 
             sql = "INSERT INTO app(name, qrcode_url, bg_url, question, intro, input_label, " \
-                  "answer_prefix, uid, follow_tip, retest_tip, pv, active) " \
-                  "VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, '%s', '%s', %d, %d)" \
+                  "answer_prefix, uid, follow_tip, retest_tip, pv, fake_pv, active) " \
+                  "VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, '%s', '%s', %d, %d, %d)" \
                   % (MySQLdb.escape_string(self.get_body_argument('name')),
                      MySQLdb.escape_string(qrcode_url),
                      MySQLdb.escape_string(bg_url),
@@ -79,7 +79,7 @@ class AppEditHandler(BaseHandler):
                      '', 1,
                      MySQLdb.escape_string(self.get_body_argument('follow_tip')),
                      MySQLdb.escape_string(self.get_body_argument('retest_tip')),
-                     0, True)
+                     0, int(self.get_body_argument('fake_pv')), True)
 
             db.insert(sql)
             self.write(json.dumps(dict(flag=True, url='/test/admin/app')))
@@ -107,7 +107,8 @@ class AppEditHandler(BaseHandler):
                 bg_url = app.bg_url
 
             sql = "UPDATE app SET name='%s', qrcode_url='%s', bg_url='%s', " \
-                  "question='%s', intro='%s', input_label='%s', follow_tip='%s', retest_tip='%s' WHERE id=%d" \
+                  "question='%s', intro='%s', input_label='%s', follow_tip='%s', retest_tip='%s', " \
+                  "fake_pv=%d WHERE id=%d" \
                   % (MySQLdb.escape_string(self.get_body_argument('name')),
                      MySQLdb.escape_string(qrcode_url),
                      MySQLdb.escape_string(bg_url),
@@ -116,6 +117,7 @@ class AppEditHandler(BaseHandler):
                      MySQLdb.escape_string(self.get_body_argument('input_label')),
                      MySQLdb.escape_string(self.get_body_argument('follow_tip')),
                      MySQLdb.escape_string(self.get_body_argument('retest_tip')),
+                     int(self.get_body_argument('fake_pv')),
                      app_id)
 
             db.update(sql)

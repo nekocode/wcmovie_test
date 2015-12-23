@@ -19,7 +19,7 @@
 
         <p class="prompt text-center">用户输入的所有内容只会用于测试，不会被个人信息采集记录。</p>
 
-        <div class="statistics"><span class="count">23,212,111 人</span>已参加该测试</div>
+        <div class="statistics"><span class="count">{{ "{:,}".format(app.fake_pv) }} 人</span>已参加该测试</div>
 
         <button type="submit" class="btn primary">查看结果</button>
       </form>
