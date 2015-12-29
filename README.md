@@ -18,7 +18,7 @@ QINIU_BUCKET_NAME = ''
 - run `server.py`
 
 ### note
-if you need a admin, please switch to the **[master](https://github.com/nekocode/wcmovie_test/tree/master)** branch.
+if you don't need a admin, please switch to the **[lite](https://github.com/nekocode/wcmovie_test/tree/lite)** branch.
 
 ### screenshots
 ![](art/1.png "")
