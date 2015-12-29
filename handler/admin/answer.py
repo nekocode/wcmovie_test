@@ -111,6 +111,8 @@ class AnswerEditHandler(BaseHandler):
             if logo_url is None:
                 self.write(json.dumps(dict(flag=False, message='图片上传到七牛失败')))
                 return
+            elif logo_url == "":
+                logo_url = answer.logo_url
 
             sql = "UPDATE answer SET logo_url='%s', title='%s', " \
                   "subtitle='%s', content='%s' WHERE id=%d" \
