@@ -17,6 +17,10 @@ QINIU_BUCKET_NAME = ''
 - you can read `optsql/db.py` for checking what sql tables need to create
 - run `server.py`
 
+### note
+if you need a admin, please switch to the **[master](https://github.com/nekocode/wcmovie_test/tree/master)** branch.
+
 ### screenshots
 ![](art/1.png "")
 ![](art/2.png "")
+![](art/3.png "")
