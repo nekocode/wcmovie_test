@@ -6,12 +6,15 @@ import tornado.options
 import tornado.httpserver
 from application import application
 from tornado.options import define, options, parse_command_line
+from tokens import TokensRefreshTask
 
 define("port", type=int, default=80, help="run on th given port")
 
 
 def main():
     parse_command_line()
+
+    TokensRefreshTask().start()
 
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(options.port)

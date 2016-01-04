@@ -28,8 +28,7 @@ class BaseHandler(RequestHandler):
 
     @staticmethod
     def update_pv(app_id, pv, fake_pv):
-        sql = "UPDATE app SET pv=%d, fake_pv=%d WHERE id=%d" % (pv, fake_pv, app_id)
-        db.update(sql)
+        db.update("UPDATE app SET pv=%d, fake_pv=%d WHERE id=%d" % (pv, fake_pv, app_id))
 
 
 class TestHandler(BaseHandler):
@@ -49,8 +48,15 @@ class TestHandler(BaseHandler):
         if app is None:
             return
 
-        input_str = self.get_argument("name")
-        self.redirect('/test/%d/result?input=%s' % (app_id, input_str), permanent=True)
+        token = self.get_argument("token", None)
+        if token is not None and not app.token == int(token):
+            token = None
+
+        if token is None:
+            self.redirect('/test/%d/qrcode' % app_id)
+        else:
+            input_str = self.get_argument("name")
+            self.redirect('/test/%d/result?input=%s' % (app_id, input_str), permanent=True)
 
 
 class ResultHandler(BaseHandler):
@@ -81,4 +87,15 @@ class ResultHandler(BaseHandler):
         BaseHandler.update_pv(app_id, app.pv+1, app.fake_pv+1)
         self.render('result.html', input_str=input_str, app=app, answer=answer, retest_url="/test/%d" % app_id)
 
+
+class QrcodeHandler(BaseHandler):
+    def data_received(self, chunk):
+        pass
+
+    def get(self, app_id):
+        app_id, app = self.get_app(app_id)
+        if app is None:
+            return
+
+        self.render('qrcode.html', qrcode_url=app.qrcode_url)
 

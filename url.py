@@ -2,7 +2,7 @@
 # coding:utf-8
 
 import sys
-from handler.test import TestHandler, ResultHandler
+from handler.test import *
 from handler.admin.log import *
 from handler.admin.app import *
 from handler.admin.answer import *
@@ -22,5 +22,6 @@ url = [
     (r'/test/admin/answer/(.*)', AnswerEditHandler),
 
     (r'/test/(.*)/result', ResultHandler),
+    (r'/test/(.*)/qrcode', QrcodeHandler),
     (r'/test/(.*)', TestHandler),
 ]
