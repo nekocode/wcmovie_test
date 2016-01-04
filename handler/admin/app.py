@@ -6,7 +6,6 @@ import uuid
 import MySQLdb
 from qiniu import Auth, put_data
 
-from tornado import escape
 from base import BaseHandler
 import config
 from optsql.db import db

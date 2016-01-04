@@ -3,7 +3,6 @@
 
 import sys
 from handler.test import *
-from handler.admin.log import *
 from handler.admin.app import *
 from handler.admin.answer import *
 
@@ -23,5 +22,6 @@ url = [
 
     (r'/test/(.*)/result', ResultHandler),
     (r'/test/(.*)/qrcode', QrcodeHandler),
+    (r'/test/(.*)/tk', TokenHandler),
     (r'/test/(.*)', TestHandler),
 ]

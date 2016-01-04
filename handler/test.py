@@ -99,3 +99,15 @@ class QrcodeHandler(BaseHandler):
 
         self.render('qrcode.html', qrcode_url=app.qrcode_url)
 
+
+class TokenHandler(BaseHandler):
+    def data_received(self, chunk):
+        pass
+
+    def get(self, app_id):
+        app_id, app = self.get_app(app_id)
+        if app is None:
+            return
+
+        self.redirect('/test/%d?token=%d' % (app_id, app.token), permanent=True)
+

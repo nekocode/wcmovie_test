@@ -5,9 +5,8 @@ import uuid
 import MySQLdb
 from qiniu import Auth, put_data
 
-from tornado import escape
-from tornado.web import authenticated, os
-from base import BaseHandler, pagination
+from tornado.web import os
+from base import BaseHandler
 import config
 from optsql.db import db
 
